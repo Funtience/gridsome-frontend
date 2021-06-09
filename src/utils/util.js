@@ -1,4 +1,4 @@
-export default (isClient) => ({
+export default {
   cutStr(str, len) {
     try {
       if (str.length > len) {
@@ -56,7 +56,7 @@ export default (isClient) => ({
     return r
   },
   fullScreen() {
-    if (!isClient) return
+    if (!process.isClient) return
     var element = document.documentElement
     if (window.ActiveXObject) {
       var WsShell = new ActiveXObject('WScript.Shell')
@@ -72,7 +72,7 @@ export default (isClient) => ({
     }
   },
   fullExit() {
-    if (!isClient) return
+    if (!process.isClient) return
     var element = document.documentElement
     if (window.ActiveXObject) {
       var WsShell = new ActiveXObject('WScript.Shell')
@@ -110,7 +110,7 @@ export default (isClient) => ({
     return 0
   },
   copy(message) {
-    if (!isClient) return
+    if (!process.isClient) return
     let doc = document.createElement('input')
     doc.value = message
     document.body.appendChild(doc)
@@ -138,4 +138,4 @@ export default (isClient) => ({
   addHttp(url) {
     return (url.match(/https?:\/\//i) ? '' : 'https://') + url
   },
-})
+}
