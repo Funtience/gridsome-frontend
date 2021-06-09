@@ -5,9 +5,9 @@ module.exports = (req, res) => {
   let target = ''
 
   // 处理代理目标地址
-  if (req.url.startsWith('/api')) {
+  if (req.url.startsWith('/auth/local')) {
     target = 'http://106.75.18.179:1337/'
-  } else if (req.url.startsWith('/uploads')) {
+  } else if (req.url.startsWith('/blogs')) {
     target = 'http://106.75.18.179:1337/'
   }
 
