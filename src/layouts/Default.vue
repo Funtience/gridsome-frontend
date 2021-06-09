@@ -307,10 +307,10 @@ export default {
     },
     full() {
       if (!this.fullButton.full) {
-        this.$utils.fullScreen()
+        this.fullScreen()
         this.fullButton.full = true
       } else {
-        this.$utils.fullExit()
+        this.fullExit()
         this.fullButton.full = false
       }
     },

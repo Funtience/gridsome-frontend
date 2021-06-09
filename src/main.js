@@ -3,7 +3,7 @@
 
 import DefaultLayout from '~/layouts/Default.vue'
 import '~/assets/css/index.css'
-import util from './utils/util'
+import util, { clientUtil } from './utils/util'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import 'mavon-editor/dist/markdown/github-markdown.min.css'
@@ -26,17 +26,20 @@ export default function(Vue, { router, head, isClient, appOptions }) {
         GRIDSOME_API_URL: process.env.GRIDSOME_API_URL,
       }
     },
+    methods: {
+      ...clientUtil,
+    },
   })
 
   Vue.prototype.$share = function(message) {
     if (!message && isClient) {
       message = window.location
     } else {
-      let arr = (window.location + '').split('#')
-      message = arr[0] + '#' + message
+      // let arr = (window.location + '').split('#')
+      message = window.location.origin + message
     }
 
-    if (util.copy(message)) {
+    if (this.copy(message)) {
       Vue.prototype.$confirm('链接已复制,去分享给好友吧!!', '分享', {
         showCancelButton: false,
         showClose: false,

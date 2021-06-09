@@ -16,7 +16,7 @@
           plain
         ></el-button>
         <el-button
-          @click="$share()"
+          @click="$share('/blog/details/' + blog.id)"
           style="margin-left: 10px"
           icon="el-icon-share"
           type="warning"

@@ -55,6 +55,47 @@ export default {
     r = parseInt(r, 10)
     return r
   },
+  parseHeaders(headers) {
+    try {
+      let linkArr = headers['link'].split(',')
+      for (let i = 0; i < linkArr.length; i++) {
+        let temp = linkArr[i]
+        if (temp.indexOf('rel="last"') < 0) {
+          continue
+        }
+        let paramArr = temp.split(/[\?&]/)
+        for (let j = 0; j < paramArr.length; j++) {
+          let stemp = paramArr[j]
+          let kv = stemp.split('=')
+          if (kv[0] != 'page') {
+            continue
+          }
+          return parseInt(kv[1])
+        }
+      }
+    } catch (e) {}
+
+    return 0
+  },
+  formatTime(time) {
+    let it = parseInt(time)
+    let m = parseInt(it / 60)
+    let s = parseInt(it % 60)
+
+    return (
+      (m < 10 ? '0' : '') +
+      parseInt(it / 60) +
+      ':' +
+      (s < 10 ? '0' : '') +
+      parseInt(it % 60)
+    )
+  },
+  addHttp(url) {
+    return (url.match(/https?:\/\//i) ? '' : 'https://') + url
+  },
+}
+
+export const clientUtil = {
   fullScreen() {
     if (!process.isClient) return
     var element = document.documentElement
@@ -87,28 +128,6 @@ export default {
       document.mozCancelFullScreen()
     }
   },
-  parseHeaders(headers) {
-    try {
-      let linkArr = headers['link'].split(',')
-      for (let i = 0; i < linkArr.length; i++) {
-        let temp = linkArr[i]
-        if (temp.indexOf('rel="last"') < 0) {
-          continue
-        }
-        let paramArr = temp.split(/[\?&]/)
-        for (let j = 0; j < paramArr.length; j++) {
-          let stemp = paramArr[j]
-          let kv = stemp.split('=')
-          if (kv[0] != 'page') {
-            continue
-          }
-          return parseInt(kv[1])
-        }
-      }
-    } catch (e) {}
-
-    return 0
-  },
   copy(message) {
     if (!process.isClient) return
     let doc = document.createElement('input')
@@ -121,21 +140,5 @@ export default {
     } catch (e) {}
     document.body.removeChild(doc)
     return status
-  },
-  formatTime(time) {
-    let it = parseInt(time)
-    let m = parseInt(it / 60)
-    let s = parseInt(it % 60)
-
-    return (
-      (m < 10 ? '0' : '') +
-      parseInt(it / 60) +
-      ':' +
-      (s < 10 ? '0' : '') +
-      parseInt(it % 60)
-    )
-  },
-  addHttp(url) {
-    return (url.match(/https?:\/\//i) ? '' : 'https://') + url
   },
 }
