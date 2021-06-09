@@ -51,41 +51,37 @@ export default function(Vue, { router, head, isClient, appOptions }) {
     }
   }
 
-  if (isClient) {
-    appOptions.store = new Vuex.Store({
-      state: {
-        token: window.sessionStorage.jwtToken || '',
+  appOptions.store = new Vuex.Store({
+    state: {
+      token: isClient ? window.sessionStorage.jwtToken || '' : '',
+    },
+    getters: {
+      getToken(state) {
+        return state.token
       },
-      getters: {
-        getToken(state) {
-          return state.token
-        },
+    },
+    mutations: {
+      changeToken(state, token) {
+        isClient && window.sessionStorage.setItem('jwtToken', token)
+        state.token = token
       },
-      mutations: {
-        changeToken(state, token) {
-          window.sessionStorage.setItem('jwtToken', token)
-          // console.log(window, sessionStorage)
-          return (state.token = token)
-        },
+    },
+    actions: {
+      loginGetToken({ commit }, user) {
+        return axios
+          .post('http://localhost:1337/auth/local', user)
+          .then((response) => {
+            // Handle success.
+            console.log('Well done!')
+            console.log('User profile', response.data.user)
+            console.log('User token', response.data.jwt)
+            commit('changeToken', response.data.jwt)
+          })
+          .catch((error) => {
+            // Handle error.
+            console.log('An error occurred:', error.response)
+          })
       },
-      actions: {
-        loginGetToken({ commit }, user) {
-          return axios
-            .post('http://localhost:1337/auth/local', user)
-            .then((response) => {
-              // Handle success.
-              console.log('Well done!')
-              console.log('User profile', response.data.user)
-              console.log('User token', response.data.jwt)
-              commit('changeToken', response.data.jwt)
-              window.sessionStorage.jwtToken = response.data.jwt
-            })
-            .catch((error) => {
-              // Handle error.
-              console.log('An error occurred:', error.response)
-            })
-        },
-      },
-    })
-  }
+    },
+  })
 }
