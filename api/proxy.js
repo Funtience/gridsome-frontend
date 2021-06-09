@@ -7,10 +7,11 @@ module.exports = (req, res) => {
   // 处理代理目标地址
   if (req.url.includes('/uploads')) {
     target = 'http://106.75.18.179:1337/'
+  } else if (req.url.startsWith('/api/blogs')) {
+    target = 'http://eduboss.lagou.com/'
+  } else if (req.url.startsWith('/api/auth')) {
+    target = 'http://eduboss.lagou.com/'
   }
-  //   else if (req.url.startsWith('/uploads')) {
-  //     target = 'http://eduboss.lagou.com/'
-  //   }
 
   // 创建代理对象并转发请求
   createProxyMiddleware({
@@ -20,7 +21,7 @@ module.exports = (req, res) => {
       // 通过路径重写，去除请求路径中的 /api
       //   例如 /api/boss/xxx 将被转发到 http://eduboss.lagou.com/boss/xxx
       //   例如 /api/front/xxx 将被转发到 http://eduboss.lagou.com/front/xxx
-      '^/uploads/': '/uploads/',
+      '^/api': '',
     },
   })(req, res)
 }

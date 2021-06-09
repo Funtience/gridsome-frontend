@@ -64,7 +64,7 @@ export default function(Vue, { router, head, isClient, appOptions }) {
     actions: {
       loginGetToken({ commit }, user) {
         return axios
-          .post(this.GRIDSOME_API_URL + '/auth/local', user)
+          .post(this.GRIDSOME_API_URL + '/api/auth/local', user)
           .then((response) => {
             // Handle success.
             console.log('Well done!')
