@@ -17,14 +17,6 @@
                   >分享</el-button
                 >
                 <el-button
-                  @click="$router.push('/blog/edit/' + $page.blog.id)"
-                  style="padding: 3px 0"
-                  type="text"
-                  icon="el-icon-edit"
-                  v-if="token"
-                  >编辑</el-button
-                >
-                <el-button
                   style=" padding: 3px 0"
                   type="text"
                   icon="el-icon-more-outline"

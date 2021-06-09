@@ -27,10 +27,6 @@ module.exports = {
   templates: {
     StrapiBlog: [
       {
-        path: '/blog/edit/:id',
-        component: './src/templates/Edit.vue',
-      },
-      {
         name: 'blog',
         path: '/blog/detail/:id',
         component: './src/templates/Blog.vue',

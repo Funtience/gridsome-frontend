@@ -66,13 +66,6 @@
                   ></el-button>
                   <el-button
                     v-if="token"
-                    @click="$router.push('/blog/edit/' + blog.id)"
-                    style="padding: 3px 0"
-                    type="text"
-                    icon="el-icon-edit"
-                  ></el-button>
-                  <el-button
-                    v-if="token"
                     @click="deleteBlog(blog.id, index)"
                     style="padding: 3px 0"
                     type="text"
