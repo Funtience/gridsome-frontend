@@ -78,6 +78,40 @@ export default {
     })
   },
   methods: {
+    share(message) {
+      if (!message) {
+        message = window.location
+      } else {
+        // let arr = (window.location + '').split('#')
+        message = window.location.origin + message
+      }
+
+      if (this.copy(message)) {
+        this.$confirm('链接已复制,去分享给好友吧!!', '分享', {
+          showCancelButton: false,
+          showClose: false,
+          type: 'success',
+        })
+      } else {
+        this.$confirm('链接复制失败,可能因为浏览器不兼容', '分享', {
+          showCancelButton: false,
+          showClose: false,
+          type: 'warning',
+        })
+      }
+    },
+    copy(message) {
+      let doc = document.createElement('input')
+      doc.value = message
+      document.body.appendChild(doc)
+      doc.select()
+      let status
+      try {
+        status = document.execCommand('copy')
+      } catch (e) {}
+      document.body.removeChild(doc)
+      return status
+    },
     mdToHtml(markdown) {
       markdown = markdown.replace(
         '/uploads/',
