@@ -72,6 +72,7 @@ export default (isClient) => ({
     }
   },
   fullExit() {
+    if (!isClient) return
     var element = document.documentElement
     if (window.ActiveXObject) {
       var WsShell = new ActiveXObject('WScript.Shell')
@@ -86,7 +87,6 @@ export default (isClient) => ({
       document.mozCancelFullScreen()
     }
   },
-
   parseHeaders(headers) {
     try {
       let linkArr = headers['link'].split(',')
@@ -134,19 +134,6 @@ export default (isClient) => ({
       (s < 10 ? '0' : '') +
       parseInt(it % 60)
     )
-  },
-  getWindowSize() {
-    if (!isClient) return
-    let windowSize = {}
-    windowSize.width =
-      window.innerWeight ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth
-    windowSize.height =
-      window.innerWeight ||
-      document.documentElement.clientHeight ||
-      document.body.clientHeight
-    return windowSize
   },
   addHttp(url) {
     return (url.match(/https?:\/\//i) ? '' : 'https://') + url
