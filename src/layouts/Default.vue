@@ -351,6 +351,7 @@ export default {
     },
     async getToken() {
       // Request API.
+      console.log(this.GRIDSOME_API_URL)
       const { data } = await axios
         .post(this.GRIDSOME_API_URL + '/auth/local', {
           identifier: '769558413@qq.com',
