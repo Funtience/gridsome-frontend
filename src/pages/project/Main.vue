@@ -15,14 +15,14 @@
           circle
           plain
         ></el-button>
-        <el-button
+        <!-- <el-button
           ref="shareBtn"
           icon="el-icon-share"
           type="warning"
           style="margin-left: 10px"
           plain
           circle
-        ></el-button>
+        ></el-button> -->
       </el-card>
 
       <div v-if="projects && projects.length > 0">
@@ -55,13 +55,13 @@
                     icon="el-icon-back"
                     >前往GitHub</el-button
                   >
-                  <el-button
+                  <!-- <el-button
                     ref="shareBtn"
                     :share-id="'/project/detail/' + project.id"
                     style="padding: 3px 0"
                     type="text"
                     icon="el-icon-share"
-                  ></el-button>
+                  ></el-button> -->
                 </div>
               </el-col>
             </el-row>

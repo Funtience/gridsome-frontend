@@ -9,14 +9,14 @@
             </el-col>
             <el-col :span="12">
               <div style="text-align: right;">
-                <el-button
+                <!-- <el-button
                   @click="share"
                   ref="shareBtn"
                   style="padding: 3px 0"
                   type="text"
                   icon="el-icon-share"
                   >分享</el-button
-                >
+                > -->
                 <el-button
                   style=" padding: 3px 0"
                   type="text"

@@ -15,7 +15,7 @@
           circle
           plain
         ></el-button>
-        <el-button
+        <!-- <el-button
           ref="shareBtn"
           share-id=""
           style="margin-left: 10px"
@@ -23,7 +23,7 @@
           type="warning"
           plain
           circle
-        ></el-button>
+        ></el-button> -->
         <el-button
           v-if="token"
           type="primary"
@@ -59,13 +59,13 @@
               </el-col>
               <el-col :span="8">
                 <div style="text-align: right;">
-                  <el-button
+                  <!-- <el-button
                     ref="shareBtn"
                     style="padding: 3px 0"
                     type="text"
                     icon="el-icon-share"
                     :share-id="'/blog/details/' + blog.id"
-                  ></el-button>
+                  ></el-button> -->
                   <el-button
                     v-if="token"
                     @click="deleteBlog(blog.id, index)"

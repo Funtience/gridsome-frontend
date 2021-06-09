@@ -4,7 +4,7 @@
       class="page-header"
       style="background-image: linear-gradient(120deg, rgb(38, 144, 249), rgb(252, 45, 45)); color: rgb(255, 255, 255);"
     >
-      <div style="position:absolute; top:20px; right:20px; z-index:2;">
+      <!-- <div style="position:absolute; top:20px; right:20px; z-index:2;">
         <el-tooltip
           effect="dark"
           :content="fullButton.full ? '退出' : '全屏'"
@@ -16,7 +16,7 @@
             circle
           ></el-button>
         </el-tooltip>
-      </div>
+      </div> -->
       <div
         v-for="(item, index) in randomIcon"
         :key="'ri' + index"
