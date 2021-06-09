@@ -107,7 +107,7 @@
 
                   <el-button
                     @click="play"
-                    id="play"
+                    ref="play"
                     slot="reference"
                     :icon="
                       music.isPlay ? 'el-icon-refresh' : 'el-icon-caret-right'
@@ -332,7 +332,8 @@ export default {
       }
       this.music.isPlay = !this.$refs.music.paused
       this.$nextTick(() => {
-        document.getElementById('play').blur()
+        // document.getElementById('play').blur()
+        this.$refs.play.blur()
       })
     },
     changeTime(time) {
@@ -351,7 +352,7 @@ export default {
     async getToken() {
       // Request API.
       const { data } = await axios
-        .post('http://localhost:1337/auth/local', {
+        .post(this.GRIDSOME_API_URL + '/auth/local', {
           identifier: '769558413@qq.com',
           password: 'Pxf769558413',
         })

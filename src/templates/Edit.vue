@@ -131,7 +131,7 @@ export default {
 
           axios
             .put(
-              'http://localhost:1337/blogs/' + this.$page.blog.id,
+              this.GRIDSOME_API_URL + '/blogs/' + this.$page.blog.id,
               this.form,
               {
                 headers: {

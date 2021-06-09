@@ -130,7 +130,7 @@ export default {
           this.submitButton.loading = true
           this.submitButton.disabled = true
           axios
-            .post('http://localhost:1337/blogs', this.form, {
+            .post(this.GRIDSOME_API_URL + '/blogs', this.form, {
               headers: {
                 Authorization: `Bearer ${this.token}`,
               },

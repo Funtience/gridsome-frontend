@@ -14,7 +14,7 @@ import axios from 'axios'
 
 export default function(Vue, { router, head, isClient, appOptions }) {
   // Set default layout as a global component
-  Vue.prototype.$utils = util
+  Vue.prototype.$utils = isClient ? util : null
   Vue.component('Layout', DefaultLayout)
   Vue.use(mavonEditor)
   Vue.use(ElementUI)
@@ -69,7 +69,7 @@ export default function(Vue, { router, head, isClient, appOptions }) {
     actions: {
       loginGetToken({ commit }, user) {
         return axios
-          .post('http://localhost:1337/auth/local', user)
+          .post(this.GRIDSOME_API_URL + '/auth/local', user)
           .then((response) => {
             // Handle success.
             console.log('Well done!')

@@ -176,7 +176,7 @@ export default {
         type: 'warning',
       }).then(() => {
         axios
-          .delete('http://localhost:1337/blogs/' + id, {
+          .delete(this.GRIDSOME_API_URL + '/blogs/' + id, {
             headers: {
               Authorization: `Bearer ${this.token}`,
             },
