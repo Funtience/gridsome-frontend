@@ -39,7 +39,7 @@ export default function(Vue, { router, head, isClient, appOptions }) {
       message = window.location.origin + message
     }
 
-    if (this.copy(message)) {
+    if (isClient && this.copy(message)) {
       Vue.prototype.$confirm('链接已复制,去分享给好友吧!!', '分享', {
         showCancelButton: false,
         showClose: false,

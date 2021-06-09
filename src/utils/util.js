@@ -97,7 +97,7 @@ export default {
 
 export const clientUtil = {
   fullScreen() {
-    if (!process.isClient) return
+    if (!process.isClient || !document) return
     var element = document.documentElement
     if (window.ActiveXObject) {
       var WsShell = new ActiveXObject('WScript.Shell')
@@ -114,6 +114,7 @@ export const clientUtil = {
   },
   fullExit() {
     if (!process.isClient) return
+    let document = window ? window.document : {}
     var element = document.documentElement
     if (window.ActiveXObject) {
       var WsShell = new ActiveXObject('WScript.Shell')
@@ -129,7 +130,7 @@ export const clientUtil = {
     }
   },
   copy(message) {
-    if (!process.isClient) return
+    if (!process.isClient || !document) return
     let doc = document.createElement('input')
     doc.value = message
     document.body.appendChild(doc)
