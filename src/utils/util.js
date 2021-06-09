@@ -1,5 +1,5 @@
-export default {
-  cutStr (str, len) {
+export default (isClient) => ({
+  cutStr(str, len) {
     try {
       if (str.length > len) {
         return str.substring(0, len) + '...'
@@ -9,7 +9,7 @@ export default {
       return ''
     }
   },
-  verifyEmail (str) {
+  verifyEmail(str) {
     if (str == null || str == undefined) {
       return false
     }
@@ -17,28 +17,36 @@ export default {
     return reg.test(str)
   },
   // yyyy-MM-ddThh-mm-ss.*
-  utcToLocal (time) {
+  utcToLocal(time) {
     let formatNum = (num) => {
-      return num >= 10 ? num : ('0' + num)
+      return num >= 10 ? num : '0' + num
     }
     let arr = time.split(/[^0-9]/)
     let worldDate = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5])
     let localDate = new Date(worldDate.getTime() + 8 * 60 * 60 * 1000)
-    return formatNum(localDate.getFullYear()) + '-' +
-            formatNum((localDate.getMonth() + 1)) + '-' +
-            formatNum(localDate.getDate()) + ' ' +
-            formatNum(localDate.getHours()) + ':' +
-            formatNum(localDate.getMinutes()) + ':' +
-            formatNum(localDate.getSeconds())
+    return (
+      formatNum(localDate.getFullYear()) +
+      '-' +
+      formatNum(localDate.getMonth() + 1) +
+      '-' +
+      formatNum(localDate.getDate()) +
+      ' ' +
+      formatNum(localDate.getHours()) +
+      ':' +
+      formatNum(localDate.getMinutes()) +
+      ':' +
+      formatNum(localDate.getSeconds())
+    )
   },
-  guid () {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+  guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (Math.random() * 16) | 0,
+        v = c == 'x' ? r : (r & 0x3) | 0x8
       return v.toString(16)
     })
   },
   // s<=r<e
-  randomInt (s, e) {
+  randomInt(s, e) {
     let d = e - s
     if (d < 0) {
       return s
@@ -47,7 +55,8 @@ export default {
     r = parseInt(r, 10)
     return r
   },
-  fullScreen () {
+  fullScreen() {
+    if (!isClient) return
     var element = document.documentElement
     if (window.ActiveXObject) {
       var WsShell = new ActiveXObject('WScript.Shell')
@@ -62,7 +71,7 @@ export default {
       element.mozRequestFullScreen()
     }
   },
-  fullExit () {
+  fullExit() {
     var element = document.documentElement
     if (window.ActiveXObject) {
       var WsShell = new ActiveXObject('WScript.Shell')
@@ -78,7 +87,7 @@ export default {
     }
   },
 
-  parseHeaders (headers) {
+  parseHeaders(headers) {
     try {
       let linkArr = headers['link'].split(',')
       for (let i = 0; i < linkArr.length; i++) {
@@ -96,13 +105,12 @@ export default {
           return parseInt(kv[1])
         }
       }
-    } catch (e) {
-
-    }
+    } catch (e) {}
 
     return 0
   },
-  copy (message) {
+  copy(message) {
+    if (!isClient) return
     let doc = document.createElement('input')
     doc.value = message
     document.body.appendChild(doc)
@@ -110,25 +118,37 @@ export default {
     let status
     try {
       status = document.execCommand('copy')
-    } catch (e) { }
+    } catch (e) {}
     document.body.removeChild(doc)
     return status
   },
-  formatTime (time) {
+  formatTime(time) {
     let it = parseInt(time)
     let m = parseInt(it / 60)
     let s = parseInt(it % 60)
 
-    return (m < 10 ? '0' : '') + parseInt(it / 60) + ':' + (s < 10 ? '0' : '') + parseInt(it % 60)
+    return (
+      (m < 10 ? '0' : '') +
+      parseInt(it / 60) +
+      ':' +
+      (s < 10 ? '0' : '') +
+      parseInt(it % 60)
+    )
   },
-  getWindowSize () {
+  getWindowSize() {
+    if (!isClient) return
     let windowSize = {}
-    windowSize.width = window.innerWeight || document.documentElement.clientWidth || document.body.clientWidth
-    windowSize.height = window.innerWeight || document.documentElement.clientHeight || document.body.clientHeight
+    windowSize.width =
+      window.innerWeight ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth
+    windowSize.height =
+      window.innerWeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight
     return windowSize
   },
-  addHttp (url) {
+  addHttp(url) {
     return (url.match(/https?:\/\//i) ? '' : 'https://') + url
-  }
-
-}
+  },
+})
