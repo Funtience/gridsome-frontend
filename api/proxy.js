@@ -20,7 +20,7 @@ module.exports = (req, res) => {
       // 通过路径重写，去除请求路径中的 /api
       //   例如 /api/boss/xxx 将被转发到 http://eduboss.lagou.com/boss/xxx
       //   例如 /api/front/xxx 将被转发到 http://eduboss.lagou.com/front/xxx
-      //   '^/api/': '',
+      '^/uploads/': '/uploads/',
     },
   })(req, res)
 }
