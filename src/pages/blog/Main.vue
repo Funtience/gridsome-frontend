@@ -16,7 +16,7 @@
           plain
         ></el-button>
         <el-button
-          @click="$share('/blog/details/' + blog.id)"
+          @click="share('/blog/details/' + blog.id)"
           style="margin-left: 10px"
           icon="el-icon-share"
           type="warning"
@@ -59,7 +59,7 @@
               <el-col :span="8">
                 <div style="text-align: right;">
                   <el-button
-                    @click="$share('/blog/details/' + blog.id)"
+                    @click="share('/blog/details/' + blog.id)"
                     style="padding: 3px 0"
                     type="text"
                     icon="el-icon-share"
@@ -152,6 +152,9 @@ export default {
     },
   },
   methods: {
+    share(message) {
+      this.$share(message)
+    },
     search() {
       let edges = this.$page.blogs.edges
       for (let i = 0; i < edges.length; i++) {

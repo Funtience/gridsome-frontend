@@ -16,7 +16,7 @@
           plain
         ></el-button>
         <el-button
-          @click="$share()"
+          @click="share('/project/detail/' + project.id)"
           icon="el-icon-share"
           type="warning"
           style="margin-left: 10px"
@@ -56,7 +56,7 @@
                     >前往GitHub</el-button
                   >
                   <el-button
-                    @click="$share('/project/detail/' + project.id)"
+                    @click="share('/project/detail/' + project.id)"
                     style="padding: 3px 0"
                     type="text"
                     icon="el-icon-share"
@@ -202,6 +202,9 @@ export default {
     },
     goGithub(url) {
       window.open('https://github.com/funtience/' + url)
+    },
+    share(message) {
+      this.$share(message)
     },
   },
 }

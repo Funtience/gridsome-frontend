@@ -10,7 +10,7 @@
             <el-col :span="12">
               <div style="text-align: right;">
                 <el-button
-                  @click="$share()"
+                  @click="share"
                   style="padding: 3px 0"
                   type="text"
                   icon="el-icon-share"
@@ -72,6 +72,9 @@ export default {
     },
   },
   methods: {
+    share(){
+      this.$share()
+    },
     mdToHtml(markdown) {
       markdown = markdown.replace(
         '/uploads/',

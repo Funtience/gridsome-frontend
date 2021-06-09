@@ -10,7 +10,7 @@
             <el-col :span="12">
               <div style="text-align: right;">
                 <el-button
-                  @click="$share()"
+                  @click="share"
                   style="padding: 3px 0"
                   type="text"
                   icon="el-icon-share"
@@ -149,6 +149,9 @@ export default {
     },
     goGithub(url) {
       window.open('https://github.com/funtience/' + url)
+    },
+    share() {
+      this.$share()
     },
   },
 }
