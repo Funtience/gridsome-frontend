@@ -4,9 +4,6 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import '~/assets/css/index.css'
 import util from './utils/util'
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-import 'mavon-editor/dist/markdown/github-markdown.min.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Vuex from 'vuex'
@@ -16,7 +13,6 @@ export default function(Vue, { router, head, isClient, appOptions }) {
   // Set default layout as a global component
   Vue.prototype.$utils = isClient ? util : null
   Vue.component('Layout', DefaultLayout)
-  Vue.use(mavonEditor)
   Vue.use(ElementUI)
   Vue.use(Vuex)
 
