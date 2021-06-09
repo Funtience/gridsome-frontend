@@ -272,48 +272,38 @@ export default {
       temp['size'] = this.$utils.randomInt(20, 40)
       this.randomIcon.push(temp)
     }
-    console.log(this.$refs.fullBtn)
-    this.$refs.fullBtn.$el.addEventListener('click', () => {
-      if (!this.fullButton.full) {
-        this.fullScreen()
-        this.fullButton.full = true
-      } else {
-        this.fullExit()
-        this.fullButton.full = false
-      }
-    })
   },
   methods: {
-    fullExit() {
-      var element = document.documentElement
-      if (window.ActiveXObject) {
-        var WsShell = new ActiveXObject('WScript.Shell')
-        WsShell.SendKeys('{F11}')
-      } else if (element.requestFullScreen) {
-        document.exitFullscreen()
-      } else if (element.msRequestFullscreen) {
-        document.msExitFullscreen()
-      } else if (element.webkitRequestFullScreen) {
-        document.webkitCancelFullScreen()
-      } else if (element.mozRequestFullScreen) {
-        document.mozCancelFullScreen()
-      }
-    },
-    fullScreen() {
-      var element = document.documentElement
-      if (window.ActiveXObject) {
-        var WsShell = new ActiveXObject('WScript.Shell')
-        WsShell.SendKeys('{F11}')
-      } else if (element.requestFullScreen) {
-        element.requestFullScreen()
-      } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen()
-      } else if (element.webkitRequestFullScreen) {
-        element.webkitRequestFullScreen()
-      } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen()
-      }
-    },
+    // fullExit() {
+    //   var element = document.documentElement
+    //   if (window.ActiveXObject) {
+    //     var WsShell = new ActiveXObject('WScript.Shell')
+    //     WsShell.SendKeys('{F11}')
+    //   } else if (element.requestFullScreen) {
+    //     document.exitFullscreen()
+    //   } else if (element.msRequestFullscreen) {
+    //     document.msExitFullscreen()
+    //   } else if (element.webkitRequestFullScreen) {
+    //     document.webkitCancelFullScreen()
+    //   } else if (element.mozRequestFullScreen) {
+    //     document.mozCancelFullScreen()
+    //   }
+    // },
+    // fullScreen() {
+    //   var element = document.documentElement
+    //   if (window.ActiveXObject) {
+    //     var WsShell = new ActiveXObject('WScript.Shell')
+    //     WsShell.SendKeys('{F11}')
+    //   } else if (element.requestFullScreen) {
+    //     element.requestFullScreen()
+    //   } else if (element.msRequestFullscreen) {
+    //     element.msRequestFullscreen()
+    //   } else if (element.webkitRequestFullScreen) {
+    //     element.webkitRequestFullScreen()
+    //   } else if (element.mozRequestFullScreen) {
+    //     element.mozRequestFullScreen()
+    //   }
+    // },
     selectTopbar(index) {
       // 取消菜单选中状态
       this.topbar.active = this.topbar.active === '' ? ' ' : ''
