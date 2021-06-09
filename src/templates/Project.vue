@@ -10,7 +10,7 @@
             <el-col :span="12">
               <div style="text-align: right;">
                 <el-button
-                  @click="share"
+                  ref="shareBtn"
                   style="padding: 3px 0"
                   type="text"
                   icon="el-icon-share"
@@ -137,7 +137,11 @@ export default {
     }
   },
   computed: {},
-
+  mounted() {
+    this.$refs.shareBtn.$el.addEventListener('click', () => {
+      this.$share(this.$refs.shareBtn.$attrs['share-id'])
+    })
+  },
   methods: {
     mdToHtml(markdown) {
       markdown = markdown.replace(
@@ -149,9 +153,6 @@ export default {
     },
     goGithub(url) {
       window.open('https://github.com/funtience/' + url)
-    },
-    share() {
-      this.$share()
     },
   },
 }

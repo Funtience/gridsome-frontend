@@ -11,7 +11,7 @@
           placement="bottom-end"
         >
           <el-button
-            @click="full"
+            ref="fullBtn"
             :icon="fullButton.full ? 'el-icon-close' : 'el-icon-rank'"
             circle
           ></el-button>
@@ -272,6 +272,16 @@ export default {
       temp['size'] = this.$utils.randomInt(20, 40)
       this.randomIcon.push(temp)
     }
+    console.log(this.$refs.fullBtn)
+    this.$refs.fullBtn.$el.addEventListener('click', () => {
+      if (!this.fullButton.full) {
+        this.fullScreen()
+        this.fullButton.full = true
+      } else {
+        this.fullExit()
+        this.fullButton.full = false
+      }
+    })
   },
   methods: {
     selectTopbar(index) {
@@ -305,15 +315,15 @@ export default {
       }
       this.randomIcon[index]['left'] = left
     },
-    full() {
-      if (!this.fullButton.full) {
-        this.fullScreen()
-        this.fullButton.full = true
-      } else {
-        this.fullExit()
-        this.fullButton.full = false
-      }
-    },
+    // full() {
+    //   if (!this.fullButton.full) {
+    //     this.fullScreen()
+    //     this.fullButton.full = true
+    //   } else {
+    //     this.fullExit()
+    //     this.fullButton.full = false
+    //   }
+    // },
     listenMusic() {
       if (!this.$refs.music) {
         return

@@ -11,6 +11,7 @@
               <div style="text-align: right;">
                 <el-button
                   @click="share"
+                  ref="shareBtn"
                   style="padding: 3px 0"
                   type="text"
                   icon="el-icon-share"
@@ -71,10 +72,12 @@ export default {
       return this.$store.state.token
     },
   },
+  mounted() {
+    this.$refs.shareBtn.$el.addEventListener('click', () => {
+      this.$share(this.$refs.shareBtn.$attrs['share-id'])
+    })
+  },
   methods: {
-    share(){
-      this.$share()
-    },
     mdToHtml(markdown) {
       markdown = markdown.replace(
         '/uploads/',

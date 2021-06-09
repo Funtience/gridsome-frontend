@@ -16,7 +16,8 @@
           plain
         ></el-button>
         <el-button
-          @click="share('/blog/details/' + blog.id)"
+          ref="shareBtn"
+          share-id=""
           style="margin-left: 10px"
           icon="el-icon-share"
           type="warning"
@@ -59,10 +60,11 @@
               <el-col :span="8">
                 <div style="text-align: right;">
                   <el-button
-                    @click="share('/blog/details/' + blog.id)"
+                    ref="shareBtn"
                     style="padding: 3px 0"
                     type="text"
                     icon="el-icon-share"
+                    :share-id="'/blog/details/' + blog.id"
                   ></el-button>
                   <el-button
                     v-if="token"
@@ -137,6 +139,13 @@ export default {
     return {
       searchKey: '',
     }
+  },
+  mounted() {
+    this.$refs.shareBtn.forEach((btn) =>
+      btn.$el.addEventListener('click', () => {
+        this.$share(btn.$attrs['share-id'])
+      })
+    )
   },
   computed: {
     token() {
