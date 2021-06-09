@@ -23,7 +23,7 @@
           plain
           circle
         ></el-button>
-        <el-button
+        <!-- <el-button
           v-if="token"
           type="primary"
           icon="el-icon-edit"
@@ -32,7 +32,7 @@
           style="float: right;"
           @click="$router.push('/blog/add')"
           >写博文</el-button
-        >
+        > -->
       </el-card>
 
       <div v-if="blogs && blogs.length > 0">
@@ -64,20 +64,20 @@
                     type="text"
                     icon="el-icon-share"
                   ></el-button>
-                  <el-button
+                  <!-- <el-button
                     v-if="token"
                     @click="$router.push('/blog/edit/' + blog.id)"
                     style="padding: 3px 0"
                     type="text"
                     icon="el-icon-edit"
-                  ></el-button>
-                  <el-button
+                  ></el-button> -->
+                  <!-- <el-button
                     v-if="token"
                     @click="deleteBlog(blog.id, index)"
                     style="padding: 3px 0"
                     type="text"
                     icon="el-icon-delete"
-                  ></el-button>
+                  ></el-button> -->
                 </div>
               </el-col>
             </el-row>
