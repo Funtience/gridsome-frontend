@@ -1,11 +1,7 @@
 {
   "routes": [
     {
-      "src": "/api/blogs/(.*)",
-      "dest": "/api/proxy"
-    },
-    {
-      "src": "/api/auth/(.*)",
+      "src": "/api/(.*)",
       "dest": "/api/proxy"
     }
   ]
