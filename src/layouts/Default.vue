@@ -156,9 +156,10 @@
           <el-col :span="2" style="text-align: center;">
             <img
               v-popover:bigAvatar
-              :src="`${GRIDSOME_API_URL}${general.avatar.url}`"
+              :src="general.avatar.url"
               style="margin-top: 4px;margin-right: 10px;width:52px; height:52px; border-radius:5px; border: 1px solid #EBEEF5"
             />
+            <!-- :src="`${GRIDSOME_API_URL}${general.avatar.url}`" -->
             <el-popover
               ref="bigAvatar"
               placement="top-start"
