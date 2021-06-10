@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/uploads/(.*)",
+      "source": "/uploads",
       "destination": "/api/proxy"
     },
     {
@@ -9,7 +9,7 @@
       "destination": "/api/proxy"
     },
     {
-      "source": "/blogs/(.*)",
+      "source": "/blogs",
       "destination": "/api/proxy"
     }
   ]
