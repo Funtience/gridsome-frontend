@@ -39,9 +39,7 @@
                     >
                     <br />
                     <img
-                      :src="
-                        fans.avatar && `${GRIDSOME_API_URL}${fans.avatar.url}`
-                      "
+                      :src="fans.avatar && fans.avatar.url"
                       style="width: 100%;border-radius:5px;margin-top: 5px"
                     />
                   </el-card>
@@ -103,10 +101,7 @@
                     >
                     <br />
                     <img
-                      :src="
-                        noticer.avatar &&
-                          `${GRIDSOME_API_URL}${noticer.avatar.url}`
-                      "
+                      :src="noticer.avatar && noticer.avatar.url"
                       style="width: 100%;border-radius:5px;margin-top: 5px"
                     />
                   </el-card>

@@ -74,10 +74,6 @@ export default {
   },
   methods: {
     mdToHtml(markdown) {
-      markdown = markdown.replace(
-        '/uploads/',
-        `${this.GRIDSOME_API_URL}/uploads/`
-      )
       const md = new MarkdownIt()
       return md.render(markdown)
     },

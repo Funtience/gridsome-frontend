@@ -172,7 +172,7 @@
               <i class="el-icon-location"></i>&emsp;{{ general.location }}
               <br />
               <img
-                :src="`${GRIDSOME_API_URL}${general.avatar.url}`"
+                :src="general.avatar.url"
                 style="width: 200px;height: 200px;"
               />
             </el-popover>
@@ -352,9 +352,8 @@ export default {
     },
     async getToken() {
       // Request API.
-      console.log(this.GRIDSOME_API_URL)
       const { data } = await axios
-        .post(this.GRIDSOME_API_URL + '/auth/local', {
+        .post('/auth/local', {
           identifier: '769558413@qq.com',
           password: 'Pxf769558413',
         })

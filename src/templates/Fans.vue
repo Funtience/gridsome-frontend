@@ -15,10 +15,7 @@
         <el-row>
           <el-col :span="9" style="padding: 0px 10px 20px 0px">
             <img
-              :src="
-                $page.user.avatar &&
-                  `${GRIDSOME_API_URL}${$page.user.avatar.url}`
-              "
+              :src="$page.user.avatar && $page.user.avatar.url"
               style="width: 100%;border-radius:5px;"
             />
             <div style="padding: 10px">
